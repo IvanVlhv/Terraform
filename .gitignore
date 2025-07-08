@@ -1,2 +1,2 @@
-root/.terraform.lock.hcl
-root/.terraform/
+global/.terraform.lock.hcl
+global/.terraform/
