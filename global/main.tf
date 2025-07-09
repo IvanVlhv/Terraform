@@ -11,4 +11,15 @@ module "vpc" {
   priv_sub_db_2 = var.priv_sub_db_2
 }
 
+module "nat" {
+  source         = "../modules/nat"
+  igw_id         = module.vpc.igw_id
+  vpc_id         = module.vpc.vpc_id
+  pub_sub_nat_1  = module.vpc.pub_sub_nat_1_id
+  pub_sub_nat_2  = module.vpc.pub_sub_nat_2_id
+  priv_sub_web_1 = module.vpc.priv_sub_web_1_id
+  priv_sub_web_2 = module.vpc.priv_sub_web_2_id
+  priv_sub_db_1  = module.vpc.priv_sub_db_1_id
+  priv_sub_db_2  = module.vpc.priv_sub_db_2_id
+}
 
