@@ -32,6 +32,6 @@ output "priv_sub_db_1_id" {
   value = aws_subnet.priv_sub_db_1.id
 }
 
-output "private_sub__6b_id" {
+output "priv_sub_db_2_id" {
     value = aws_subnet.priv_sub_db_2.id 
 }
