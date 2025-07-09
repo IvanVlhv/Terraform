@@ -1,4 +1,4 @@
-# nat gateway in public subnet 1
+# eip-nat in public subnet 1
 resource "aws_eip" "eip_nat_1" {
   vpc = true
   tags = {
@@ -6,7 +6,7 @@ resource "aws_eip" "eip_nat_1" {
   }
 }
 
-# nat gateway in public subnet 2
+# eip-nat in public subnet 2
 resource "aws_eip" "eip_nat_2" {
   vpc = true
   tags = {
@@ -17,7 +17,7 @@ resource "aws_eip" "eip_nat_2" {
 # nat gateway in public subnet 1
 resource "aws_nat_gateway" "nat_1" {
   allocation_id = aws_eip.eip_nat_1.id
-  subnet_id     = var.public_sub_1a
+  subnet_id     = var.pub_sub_nat_1
   tags   = {
     Name = "nat-1"
   }
@@ -27,7 +27,7 @@ resource "aws_nat_gateway" "nat_1" {
 # nat gateway in public subnet 2
 resource "aws_nat_gateway" "nat_2" {
   allocation_id = aws_eip.eip_nat_2.id
-  subnet_id     = var.public_sub_2b
+  subnet_id     = var.pub_sub_nat_2
   tags   = {
     Name = "nat-2"
   }
@@ -47,15 +47,15 @@ resource "aws_route_table" "private_rt_1" {
   }
 }
 
-# private network for private 3a with route table 1
-resource "aws_route_table_association" "private_3a_with_rt" {
-  subnet_id         = var.private_sub_3a
+# private network for priv_sub_web_1 with route table 1
+resource "aws_route_table_association" "priv_sub_web_1_rt" {
+  subnet_id         = var.priv_sub_web_1
   route_table_id    = aws_route_table.private_rt_1.id
 }
 
-# private network for private 4b with route table 1
-resource "aws_route_table_association" "private_4b_with_rt" {
-  subnet_id         = var.private_sub_4b
+# private network for priv_sub_web_2 with route table 1
+resource "aws_route_table_association" "priv_sub_web_2_rt" {
+  subnet_id         = var.priv_sub_web_2
   route_table_id    = aws_route_table.private_rt_1.id
 }
 
@@ -72,14 +72,14 @@ resource "aws_route_table" "private_rt_2" {
   }
 }
 
-# private network for private 5a with route table 2
-resource "aws_route_table_association" "private_5a_with_rt" {
-  subnet_id         = var.private_sub_5a
+# private network for priv_sub_db_1 with route table 2
+resource "aws_route_table_association" "priv_sub_db_1_rt" {
+  subnet_id         = var.priv_sub_db_1
   route_table_id    = aws_route_table.private_rt_2.id
 }
 
-# private network for private 6b with route table 2
-resource "aws_route_table_association" "private_6b_with_rt" {
-  subnet_id         = var.private_sub_6b
+# private network for priv_sub_db_2 with route table 2
+resource "aws_route_table_association" "priv_sub_db_2_rt" {
+  subnet_id         = var.priv_sub_db_2
   route_table_id    = aws_route_table.private_rt_2.id
 }

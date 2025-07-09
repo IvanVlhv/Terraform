@@ -22,27 +22,27 @@ resource "aws_internet_gateway" "internet_gateway" {
 #available zones
 data "aws_availability_zones" "available_zones" {}
 
-#public subnet public_sub_1a
-resource "aws_subnet" "public_sub_1a" {
+#public subnet pub_sub_nat_1
+resource "aws_subnet" "pub_sub_nat_1" {
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.public_sub_1a
+  cidr_block              = var.pub_sub_nat_1
   availability_zone       = data.aws_availability_zones.available_zones.names[0]
   map_public_ip_on_launch = true
 
   tags      = {
-    Name    = "public_sub_1a"
+    Name    = "pub_sub_nat_1"
   }
 }
 
-#public subnet public_sub_2b
-resource "aws_subnet" "public_sub_2b" {
+#public subnet pub_sub_nat_2
+resource "aws_subnet" "pub_sub_nat_2" {
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = var.public_sub_2b
+  cidr_block              = var.pub_sub_nat_2
   availability_zone       = data.aws_availability_zones.available_zones.names[1]
   map_public_ip_on_launch = true
 
   tags      = {
-    Name    = "public_sub_2b"
+    Name    = "pub_sub_nat_2"
   }
 }
 
@@ -60,62 +60,62 @@ resource "aws_route_table" "public_route_table" {
   }
 }
 
-# connect public subnet public_sub_1a to public route table
+# connect public subnet pub_sub_nat_1 to public route table
 resource "aws_route_table_association" "pb1a_rt_connection" {
-  subnet_id           = aws_subnet.public_sub_1a.id
+  subnet_id           = aws_subnet.pub_sub_nat_1.id
   route_table_id      = aws_route_table.public_route_table.id
 }
 
-# connect public subnet public_sub_1a to public route table
+# connect public subnet pub_sub_nat_1 to public route table
 resource "aws_route_table_association" "pb2b_rt_connection" {
-  subnet_id           = aws_subnet.public_sub_2b.id
+  subnet_id           = aws_subnet.pub_sub_nat_2.id
   route_table_id      = aws_route_table.public_route_table.id
 }
 
-# private subnet private_sub_3a
-resource "aws_subnet" "private_sub_3a" {
+# private subnet priv_sub_web_1
+resource "aws_subnet" "priv_sub_web_1" {
   vpc_id                   = aws_vpc.vpc.id
-  cidr_block               = var.private_sub_3a
+  cidr_block               = var.priv_sub_web_1
   availability_zone        = data.aws_availability_zones.available_zones.names[0]
   map_public_ip_on_launch  = false
 
   tags      = {
-    Name    = "private_sub_3a"
+    Name    = "priv_sub_web_1"
   }
 }
 
-# private subnet private_sub_4b
-resource "aws_subnet" "private_sub_4b" {
+# private subnet priv_sub_web_2
+resource "aws_subnet" "priv_sub_web_2" {
   vpc_id                   = aws_vpc.vpc.id
-  cidr_block               = var.private_sub_4b
+  cidr_block               = var.priv_sub_web_2
   availability_zone        = data.aws_availability_zones.available_zones.names[1]
   map_public_ip_on_launch  = false
 
   tags      = {
-    Name    = "private_sub_4b"
+    Name    = "priv_sub_web_2"
   }
 }
 
-# private subnet private_sub_5a
-resource "aws_subnet" "private_sub_5a" {
+# private subnet priv_sub_db_1
+resource "aws_subnet" "priv_sub_db_1" {
   vpc_id                   = aws_vpc.vpc.id
-  cidr_block               = var.private_sub_5a
+  cidr_block               = var.priv_sub_db_1
   availability_zone        = data.aws_availability_zones.available_zones.names[0]
   map_public_ip_on_launch  = false
 
   tags      = {
-    Name    = "private_sub_5a"
+    Name    = "priv_sub_db_1"
   }
 }
 
-# private subnet private_sub_6b
-resource "aws_subnet" "private_sub_6b" {
+# private subnet priv_sub_db_2
+resource "aws_subnet" "priv_sub_db_2" {
   vpc_id                   = aws_vpc.vpc.id
-  cidr_block               = var.private_sub_6b
+  cidr_block               = var.priv_sub_db_2
   availability_zone        = data.aws_availability_zones.available_zones.names[1]
   map_public_ip_on_launch  = false
 
   tags      = {
-    Name    = "private_sub_6b"
+    Name    = "priv_sub_db_2"
   }
 }

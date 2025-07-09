@@ -1,14 +1,14 @@
 module "vpc" {
   source = "../modules/vpc"
-  region = var.region
+  aws_region = var.aws_region
   project_name = var.project_name
   vpc_cidr = var.vpc_cidr
-  public_sub_1a = var.public_sub_1a
-  public_sub_2b = var.public_sub_2b
-  private_sub_3a = var.private_sub_3a
-  private_sub_4b = var.private_sub_4b
-  private_sub_5a = var.private_sub_5a
-  private_sub_6b = var.private_sub_6b
+  pub_sub_nat_1 = var.pub_sub_nat_1
+  pub_sub_nat_2 = var.pub_sub_nat_2
+  priv_sub_web_1 = var.priv_sub_web_1
+  priv_sub_web_2 = var.priv_sub_web_2
+  priv_sub_db_1 = var.priv_sub_db_1
+  priv_sub_db_2 = var.priv_sub_db_2
 }
 
 

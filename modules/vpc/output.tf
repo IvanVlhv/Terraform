@@ -2,8 +2,8 @@ output "project_name" {
   value = var.project_name
 }
 
-output "region" {
-  value = var.region
+output "aws_region" {
+  value = var.aws_region
 }
 
 output "igw_id" {
@@ -14,24 +14,24 @@ output "vpc_id" {
   value = aws_vpc.vpc.id
 }
 
-output "public_sub_1a_id" {
-  value = aws_subnet.public_sub_1a.id
+output "pub_sub_nat_1_id" {
+  value = aws_subnet.pub_sub_nat_1.id
 }
-output "public_sub_2b_id" {
-  value = aws_subnet.public_sub_2b.id
+output "pub_sub_nat_2_id" {
+  value = aws_subnet.pub_sub_nat_2.id
 }
-output "private_sub_3a_id" {
-  value = aws_subnet.private_sub_3a.id
-}
-
-output "private_sub_4b_id" {
-  value = aws_subnet.private_sub_4b.id
+output "priv_sub_web_1_id" {
+  value = aws_subnet.priv_sub_web_1.id
 }
 
-output "private_sub_5a_id" {
-  value = aws_subnet.private_sub_5a.id
+output "priv_sub_web_2_id" {
+  value = aws_subnet.priv_sub_web_2.id
+}
+
+output "priv_sub_db_1_id" {
+  value = aws_subnet.priv_sub_db_1.id
 }
 
 output "private_sub__6b_id" {
-    value = aws_subnet.private_sub_6b.id 
+    value = aws_subnet.priv_sub_db_2.id 
 }
