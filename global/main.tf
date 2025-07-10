@@ -23,3 +23,11 @@ module "nat" {
   priv_sub_db_2  = module.vpc.priv_sub_db_2_id
 }
 
+module "alb" {
+  source = "../modules/alb"
+  project_name = module.vpc.project_name
+  vpc_id = module.vpc.vpc_id
+  alb_sec_group_id = module.#dodaj sec grupu
+  pub_sub_nat_1 = module.vpc.pub_sub_nat_1_id
+  pub_sub_nat_2 = module.vpc.pub_sub_nat_2_id
+}
