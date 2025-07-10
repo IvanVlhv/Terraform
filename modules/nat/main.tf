@@ -1,6 +1,5 @@
 # eip-nat in public subnet 1
 resource "aws_eip" "eip_nat_1" {
-  vpc = true
   tags = {
     Name = "eip_nat_1"
   }
@@ -8,7 +7,6 @@ resource "aws_eip" "eip_nat_1" {
 
 # eip-nat in public subnet 2
 resource "aws_eip" "eip_nat_2" {
-  vpc = true
   tags = {
     Name = "eip_nat_2"
   }
