@@ -23,6 +23,11 @@ module "nat" {
   priv_sub_db_2  = module.vpc.priv_sub_db_2_id
 }
 
+module "sec_group" {
+  source = "../modules/sec_group"
+  vpc_id = module.vpc.vpc_id
+}
+
 module "alb" {
   source = "../modules/alb"
   project_name = module.vpc.project_name

@@ -66,7 +66,7 @@ resource "aws_route_table_association" "pb1a_rt_connection" {
   route_table_id      = aws_route_table.public_route_table.id
 }
 
-# connect public subnet pub_sub_nat_1 to public route table
+# connect public subnet pub_sub_nat_2 to public route table
 resource "aws_route_table_association" "pb2b_rt_connection" {
   subnet_id           = aws_subnet.pub_sub_nat_2.id
   route_table_id      = aws_route_table.public_route_table.id

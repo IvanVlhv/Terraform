@@ -5,3 +5,5 @@ variable priv_sub_web_1 {}
 variable priv_sub_web_2 {}
 variable priv_sub_db_1 {}
 variable priv_sub_db_2 {}
+variable project_name {}
+variable aws_region {}
