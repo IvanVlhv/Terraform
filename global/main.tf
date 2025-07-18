@@ -27,7 +27,7 @@ module "alb" {
   source = "../modules/alb"
   project_name = module.vpc.project_name
   vpc_id = module.vpc.vpc_id
-  alb_sec_group_id = module.#dodaj sec grupu
+  alb_sec_group_id = module.alb_sec_group.id
   pub_sub_nat_1 = module.vpc.pub_sub_nat_1_id
   pub_sub_nat_2 = module.vpc.pub_sub_nat_2_id
 }
