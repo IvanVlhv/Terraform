@@ -1,4 +1,4 @@
-project_name = "Zavrsni_rad"
+project_name = "ZavrsniRad"
 aws_region   = "eu-central-1"
 vpc_cidr            = "10.10.0.0/16"
 pub_sub_nat_1       = "10.10.1.0/24"
