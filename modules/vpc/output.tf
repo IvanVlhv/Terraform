@@ -7,7 +7,7 @@ output "aws_region" {
 }
 
 output "igw_id" {
-    value = aws_internet_gateway.internet_gateway
+    value = aws_internet_gateway.internet_gateway.id
 }
 
 output "vpc_id" {
