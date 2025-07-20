@@ -43,6 +43,7 @@ module "web" {
   web_sec_group_id  = module.sec_group.web_sec_group_id
   priv_sub_web_1    = module.vpc.priv_sub_web_1_id
   priv_sub_web_2    = module.vpc.priv_sub_web_2_id
+  target_group_arn  = module.alb.target_group_arn
   instance_type     = var.web_instance_type
   key_name          = var.key_name
 }
