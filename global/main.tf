@@ -40,7 +40,6 @@ module "alb" {
 module "web" {
   source            = "../modules/web"
   project_name      = module.vpc.project_name
-  vpc_id            = module.vpc.vpc_id
   web_sec_group_id  = module.sec_group.web_sec_group_id
   priv_sub_web_1    = module.vpc.priv_sub_web_1_id
   priv_sub_web_2    = module.vpc.priv_sub_web_2_id
