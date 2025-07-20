@@ -11,7 +11,7 @@ data "aws_ami" "amazon_linux" {
 
 # launch template for autoscaling group
 resource "aws_launch_template" "web" {
-  name_prefix          = "${var.project_name}-lt-"
+  name_prefix          = "${var.project_name}-launch-template"
   image_id             = data.aws_ami.amazon_linux.id
   instance_type        = var.instance_type
   key_name             = var.key_name
@@ -21,7 +21,7 @@ resource "aws_launch_template" "web" {
 
 # autoscaling group for web instances
 resource "aws_autoscaling_group" "web_asg" {
-  name_prefix         = "${var.project_name}-asg-"
+  name_prefix         = "${var.project_name}-asg"
   desired_capacity    = var.desired_capacity
   min_size            = var.min_size
   max_size            = var.max_size
