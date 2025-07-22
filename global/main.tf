@@ -47,3 +47,13 @@ module "web" {
   instance_type     = var.web_instance_type
   key_name          = var.key_name
 }
+
+module "db" {
+  source            = "../modules/db"
+  project_name      = module.vpc.project_name
+  db_username       = var.db_username
+  db_password       = var.db_password
+  db_sec_group_id   = module.sec_group.db_sec_group_id
+  priv_sub_db_1     = module.vpc.priv_sub_db_1_id
+  priv_sub_db_2     = module.vpc.priv_sub_db_2_id
+}
