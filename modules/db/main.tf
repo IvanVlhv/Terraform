@@ -4,7 +4,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 }
 
 resource "aws_db_instance" "db" {
-  identifier              = "${var.project_name}-db"
+  identifier              = "zavrsni-db"
   engine                  = "mysql"
   engine_version          = "8.0"
   instance_class          = "db.t3.micro"
