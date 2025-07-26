@@ -5,7 +5,7 @@ resource "aws_lb" "alb" {
   load_balancer_type         = "application"
   security_groups            = [var.alb_sec_group_id]
   subnets                    = [var.pub_sub_nat_1,var.pub_sub_nat_2,]
-  enable_deletion_protection = true   
+  enable_deletion_protection = false   
   
   tags        = {
       Name    = "${var.project_name}-alb"
