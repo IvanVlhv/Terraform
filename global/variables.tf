@@ -9,7 +9,5 @@ variable priv_sub_db_1 {}
 variable priv_sub_db_2 {}
 variable db_username {}
 variable db_password {}
-variable certificate_domain_name {}
-variable additional_domain_name {}
 variable web_instance_type {}
 variable key_name {}

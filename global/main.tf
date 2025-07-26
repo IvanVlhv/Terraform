@@ -28,21 +28,6 @@ module "sec_group" {
   vpc_id = module.vpc.vpc_id
 }
 
-module "route53" {
-  source                 = "../modules/r53"
-  domain_name            = var.certificate_domain_name
-  additional_domain_name = var.additional_domain_name
-  alb_dns                = module.alb.alb_dns
-  alb_zone_id            = module.alb.alb_zone_id
-}
-
-module "acm" {
-  source                   = "../modules/acm"
-  domain_name              = var.certificate_domain_name
-  subject_alternative_names = var.additional_domain_name != null && var.additional_domain_name != "" ? [var.additional_domain_name] : []
-  zone_id                  = module.route53.zone_id
-}
-
 module "alb" {
   source            = "../modules/alb"
   project_name      = module.vpc.project_name
@@ -50,7 +35,6 @@ module "alb" {
   alb_sec_group_id  = module.sec_group.alb_sec_group_id
   pub_sub_nat_1     = module.vpc.pub_sub_nat_1_id
   pub_sub_nat_2     = module.vpc.pub_sub_nat_2_id
-  certificate_arn   = module.acm.certificate_arn
 }
 
 module "web" {
