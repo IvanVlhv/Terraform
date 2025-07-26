@@ -9,6 +9,32 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role" "ssm_role" {
+  name               = "${var.project_name}-ssm-role"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+
+resource "aws_iam_role_policy_attachment" "ssm_core" {
+  role       = aws_iam_role.ssm_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+
+resource "aws_iam_instance_profile" "ssm_instance_profile" {
+  name = "${var.project_name}-ssm-instance-profile"
+  role = aws_iam_role.ssm_role.name
+}
+
 # launch template for autoscaling group
 resource "aws_launch_template" "web" {
   name_prefix          = "${var.project_name}-launch-template"
@@ -17,6 +43,9 @@ resource "aws_launch_template" "web" {
   key_name             = var.key_name
   vpc_security_group_ids = [var.web_sec_group_id]
   user_data            = var.user_data
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ssm_instance_profile.name
+  }  
 }
 
 # autoscaling group for web instances
