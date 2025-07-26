@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
+exec > /var/log/user-data.log 2>&1
 yum update -y
 yum install -y git python3
-cd "/home/ec2-user"
+cd "/home"
 if [ ! -d SnakeGame ]; then
   git clone https://github.com/IvanVlhv/SnakeGame.git
 fi
