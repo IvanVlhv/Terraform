@@ -47,6 +47,7 @@ module "web" {
   instance_type     = var.web_instance_type
   key_name          = var.key_name
     user_data         = filebase64("${path.module}/install_snakegame.sh")
+  depends_on        = [module.nat]  
 }
 
 module "db" {
